@@ -7,8 +7,9 @@ from sklearn.preprocessing import LabelEncoder
 from tqdm import tqdm
 
 # 🔹 데이터 로드
-lip_features = np.load("lip_features.npy")
-with open("labels.txt", "r", encoding="utf-8") as f:
+DATASET_PATH = "dataset/processed/"
+lip_features = np.load(DATASET_PATH + "lip_features.npy")
+with open(DATASET_PATH + "labels.txt", "r", encoding="utf-8") as f:
     labels = [line.strip() for line in f]
 
 # 🔹 텍스트 라벨 인코딩 (문장을 정수로 변환)
@@ -41,7 +42,7 @@ class LipReadingModel(nn.Module):
 
     def forward(self, x):
         lstm_out, _ = self.lstm(x)
-        out = self.fc(lstm_out[:, -1, :])  # 마지막 타임스텝 출력 사용
+        out = self.fc(lstm_out[:, -1, :])
         return self.softmax(out)
 
 # 🔹 모델 초기화 및 학습 설정

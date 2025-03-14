@@ -1,6 +1,8 @@
-opencv-python 
-mediapipe 
-torch 
-torchvision 
-torchaudio 
 numpy
+opencv-python
+mediapipe
+torch
+torchvision
+torchaudio
+tqdm
+scikit-learn
